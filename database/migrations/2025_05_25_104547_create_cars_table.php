@@ -18,7 +18,6 @@ return new class extends Migration
             $table->integer('year')->nullable();
             $table->integer('mileage')->nullable();
             $table->string('color')->nullable();
-            $table->timestamps();
         });
     }
 
