@@ -6,8 +6,8 @@ use App\Models\Car;
 class CarService
 {
     public function __construct(
-        private BrandService $brandService,
-        private CarModelService $carModelService
+        protected BrandService $brandService,
+        protected CarModelService $carModelService
     )
     {
     }
