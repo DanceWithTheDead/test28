@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Api\CarModel;
+use App\Models\CarModel;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
