@@ -14,7 +14,7 @@ class BrandController extends Controller
      */
     public function index()
     {
-        //
+        return Brand::all();
     }
 
     /**
@@ -30,7 +30,7 @@ class BrandController extends Controller
      */
     public function show(Brand $brand)
     {
-        //
+        return $brand;
     }
 
     /**
