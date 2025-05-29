@@ -21,7 +21,7 @@ class CarController extends Controller
      */
     public function index()
     {
-        //
+        return Car::paginate(10);
     }
 
     /**
@@ -52,7 +52,8 @@ class CarController extends Controller
      */
     public function show(Car $car)
     {
-        //
+        $car = Car::find($car->id);
+        return response()->json($car);
     }
 
     /**
@@ -68,6 +69,9 @@ class CarController extends Controller
      */
     public function destroy(Car $car)
     {
-        //
+        Car::destroy($car->id);
+        return response()->json([
+            'message' => 'Car has been deleted'
+        ], 204);
     }
 }

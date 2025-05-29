@@ -12,3 +12,5 @@ Route::get('/user', function (Request $request) {
 
 
 Route::post('/cars', [CarController::class, 'store']);
+Route::get('/cars', [CarController::class, 'index']);
+Route::get('/cars/{car}', [CarController::class, 'show']);
