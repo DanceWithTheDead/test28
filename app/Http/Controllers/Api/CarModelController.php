@@ -14,7 +14,7 @@ class CarModelController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(CarModel::all());
     }
 
     /**
