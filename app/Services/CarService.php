@@ -24,4 +24,8 @@ class CarService
             'color' => $data['color'] ?? null,
         ]);
     }
+
+    public function updateCar(Car $car, array $data)
+    {
+    }
 }

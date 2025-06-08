@@ -11,7 +11,7 @@ class StoreCarRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,34 @@ class StoreCarRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'brand_name' => 'required|string|max:50',
+            'model_name' => 'required|string|max:50',
+            'year' => 'nullable|integer|min:1900|max:' . date('Y'),
+            'mileage' => 'nullable|integer|min:0',
+            'color' => 'nullable|string|max:50',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'brand_name.required' => 'Название марки обязательно',
+            'brand_name.string' => 'Название марки должно быть строкой',
+            'brand_name.max' => 'Название марки не должно превышать 50 символов',
+
+            'model_name.required' => 'Название модели обязательно',
+            'model_name.string' => 'Название модели должно быть строкой',
+            'model_name.max' => 'Название модели не должно превышать 50 символов',
+
+            'year.integer' => 'Год должен быть целым числом',
+            'year.min' => 'Год не должен быть меньше 1900',
+            'year.max' => 'Год не должен быть больше текущего',
+
+            'mileage.integer' => 'Пробег должен быть числом',
+            'mileage.min' => 'Пробег не может быть отрицательным',
+
+            'color.string' => 'Цвет должен быть строкой',
+            'color.max' => 'Название цвета не может превышать 50 символов'
         ];
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCarRequest;
 use App\Models\Car;
 use App\Http\Requests\UpdateCarRequest;
 use App\Services\CarService;
@@ -27,21 +28,20 @@ class CarController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreCarRequest   $request)
     {
-        $validated = $request->validate([
-            'brand_name' => 'required|string|max:255',
-            'model_name' => 'required|string|max:255',
-            'year' => 'nullable|integer|min:1900|max:' . date('Y'),
-            'mileage' => 'nullable|integer|min:0',
-            'color' => 'nullable|string|max:100',
-        ]);
+
         try {
-            $car = $this->carService->createCar($validated);
-            return response()->json($car, 201);
+            $car = $this->carService->createCar($request->validated());
+            return response()->json([
+                'success' => true,
+                'data' => $car,
+                'message' => 'Машина создана'
+            ], 201);
         } catch (\Exception $e) {
             return response()->json([
-                'message' => 'Failed to create car',
+                'success' => false,
+                'message' => 'Ошибка при создании машины',
                 'error' => $e->getMessage(),
             ], 500);
         }
@@ -61,7 +61,7 @@ class CarController extends Controller
      */
     public function update(UpdateCarRequest $request, Car $car)
     {
-        //
+
     }
 
     /**
